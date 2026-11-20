@@ -1,0 +1,14 @@
+[[mgr.prepend_keymap]]
+on = "<C-j>"
+run = "arrow 10"
+desc = "Move cursor down 10 lines"
+
+[[mgr.prepend_keymap]]
+on = "<C-k>"
+run = "arrow -10"
+desc = "Move cursor up 10 lines"
+
+[[mgr.prepend_keymap]]
+on = "<Enter>"
+run = "open"
+desc = "Open (nvim for text, system app for media)"
