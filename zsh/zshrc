@@ -1,0 +1,81 @@
+# ============================================================
+# Environment
+# ============================================================
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export EDITOR=nvim          # used by yazi, git, crontab, etc.
+export VISUAL=nvim
+export PATH="$HOME/.local/bin:$PATH"
+export STARSHIP_CONFIG="$HOME/.config/zsh/starship.toml"
+
+# ============================================================
+# Completion (replaces Oh My Zsh)
+# ============================================================
+# Pick up Homebrew-provided completions (starship, zellij, etc.)
+FPATH="/opt/homebrew/share/zsh/site-functions:${FPATH}"
+autoload -Uz compinit && compinit
+
+# Force emacs line-editing keys. Without this zsh picks vi mode because
+# $EDITOR=nvim contains "vi" — which broke Option+Delete (word delete).
+bindkey -e
+
+# ============================================================
+# History
+# ============================================================
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+setopt share_history inc_append_history hist_ignore_dups hist_ignore_space
+
+# ============================================================
+# Aliases
+# ============================================================
+# git
+alias ga="git add"
+alias gc="git commit"
+alias gl="git log"
+alias gs="git status"
+alias gd="git diff"
+# editor
+alias vim="nvim"
+alias vi="nvim"
+# tools
+alias lsl="ls -l"
+alias ta="tmux a"
+alias dc="docker-compose"
+alias rgdb="riscv64-elf-gdb"
+alias zj="zellij"
+
+# ============================================================
+# Functions
+# ============================================================
+# yazi: open the file manager and cd to wherever you quit it.
+y() {
+	local tmp cwd
+	tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+	command rm -f -- "$tmp"
+}
+
+# lst: print the newest file/dir in the given path(s).
+lst() { ls -t "$@" | head -n 1; }
+
+# ============================================================
+# Prompt
+# ============================================================
+eval "$(starship init zsh)"
+
+# ============================================================
+# fzf — fuzzy finder (Ctrl+R fuzzy history, Ctrl+T fuzzy file insert)
+# ============================================================
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --info=inline \
+--color=bg+:#3c3836,fg+:#d4be98,hl:#d8a657,hl+:#e78a4e,border:#665c54,prompt:#89b482,pointer:#ea6962,marker:#a9b665"
+source <(fzf --zsh)
+
+# ============================================================
+# Plugins (syntax-highlighting must be sourced LAST)
+# ============================================================
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

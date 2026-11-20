@@ -1,0 +1,39 @@
+add_newline = true
+palette = "gruvbox"
+
+format = """
+$directory$git_branch$git_status$cmd_duration
+$character"""
+
+[palettes.gruvbox]
+red = "#ea6962"
+green = "#a9b665"
+yellow = "#d8a657"
+blue = "#7daea3"
+aqua = "#89b482"
+orange = "#e78a4e"
+purple = "#d3869b"
+gray = "#928374"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold yellow)"
+
+[directory]
+style = "bold yellow"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+symbol = ""
+format = "on [$branch]($style) "
+style = "bold aqua"
+
+[git_status]
+disabled = true
+
+[cmd_duration]
+min_time = 2000
+format = "[ $duration]($style)"
+style = "gray"
