@@ -1,7 +1,7 @@
 theme "gruvbox-dark"
 
 // macOS clipboard: selected/copied text goes to the system clipboard.
-copy_command "pbcopy"
+// copy_command "pbcopy"
 
 // Bigger scrollback buffer.
 scroll_buffer_size 20000
@@ -14,6 +14,7 @@ default_shell "zsh"
 
 keybinds {
     unbind "Ctrl s" "Ctrl o" "Ctrl p" "Ctrl n" "Ctrl t" "Ctrl h" "Ctrl g"
+    unbind "Alt f" "Alt b"
     tmux {
         bind "w" { LaunchOrFocusPlugin "session-manager" { floating true; move_to_focused_tab true; }; SwitchToMode "Normal"; }
         bind "r" { SwitchToMode "Resize"; }
