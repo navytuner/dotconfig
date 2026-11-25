@@ -127,6 +127,11 @@ do
   -- Enable break indent
   vim.o.breakindent = true
 
+  vim.o.tabstop = 4
+  vim.o.shiftwidth = 4
+  vim.o.softtabstop = 4
+  vim.o.expandtab = true
+
   -- Enable undo/redo changes even after closing and reopening a file
   vim.o.undofile = true
 
@@ -746,6 +751,7 @@ do
         '--clang-tidy',
         '--header-insertion=never',
         '--completion-style=detailed',
+        '--function-arg-placeholders=0',
       },
     },
     -- gopls = {},
@@ -911,7 +917,7 @@ do
       -- <c-k>: Toggle signature help
       --
       -- See `:help blink-cmp-config-keymap` for defining your own keymap
-      preset = 'default',
+      preset = 'super-tab',
 
       -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
       --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
