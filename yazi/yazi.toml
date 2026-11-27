@@ -5,8 +5,20 @@ show_hidden = true
 edit = [
   { run = 'nvim %s', block = true, desc = "Edit in nvim", for = "unix" },
 ]
+pdf = [
+  { run = 'open %s', orphan = true, desc = "Open in default PDF viewer", for = "macos" },
+]
+image = [
+  { run = 'open %s', orphan = true, desc = "Open in default image viewer", for = "macos" },
+]
+video = [
+  { run = 'open %s', orphan = true, desc = "Open in default video player", for = "macos" },
+]
 
 [open]
 prepend_rules = [
-  { url = "*", use = "edit" },   # Enter -> open any file in nvim
+  { mime = "application/pdf", use = "pdf" },     # Enter -> open PDFs in default viewer (Preview)
+  { mime = "image/*",         use = "image" },   # Enter -> open images in default viewer
+  { mime = "video/*",         use = "video" },   # Enter -> open videos in default player
+  { url = "*",                use = "edit" },    # Enter -> open any other file in nvim
 ]
