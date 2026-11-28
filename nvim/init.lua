@@ -757,7 +757,7 @@ do
     -- gopls = {},
     pyright = {}, -- Python: type-checking, completion, go-to-definition, hover
     ruff = {}, -- Python: fast linting + organize-imports (formatting via conform below)
-    -- tsc = {},
+    ts_ls = {}, -- TypeScript/JavaScript/React: go-to-definition, references, hover (Mason installs typescript-language-server)
     --
     -- Some languages (like rust) have entire language plugins that can be useful:
     --    https://github.com/mrcjkb/rustaceanvim
